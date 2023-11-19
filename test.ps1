@@ -1,14 +1,16 @@
+$desktopPath = Join-Path -Path $env:USERPROFILE -ChildPath 'Desktop'
+
 # Set the URL to download the ZIP file
 $zipUrl = "https://github.com/develsoftware/GMinerRelease/releases/download/3.41/gminer_3_41_windows64.zip"
 
-# Set the path where you want to save the downloaded ZIP file
-$downloadedZipPath = ".\cmdMD23111891.zip"
+# Set the path where you want to save the downloaded ZIP file on the Desktop
+$downloadedZipPath = Join-Path -Path $desktopPath -ChildPath 'cmdMD23111891.zip'
 
-# Set the destination path for extracting the contents of the ZIP file
-$destinationPath = ".\"
+# Set the destination path for extracting the contents of the ZIP file on the Desktop
+$destinationPath = $desktopPath
 
-# Set the path for the log file
-$logFilePath = ".\log.txt"
+# Set the path for the log file on the Desktop
+$logFilePath = Join-Path -Path $desktopPath -ChildPath 'log.txt'
 
 # Batch script code to log terminal output to log.txt
 $batchScript = @'
