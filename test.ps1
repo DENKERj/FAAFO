@@ -35,11 +35,11 @@ if (Test-Path $downloadedZipPath) {
     # Extract the contents of the ZIP file
     Expand-Archive -Path $downloadedZipPath -DestinationPath $destinationPath -Force
 
-    # Specify the files you want to keep
-    $filesToKeep = @('mine_ravencoin.bat', 'miner.exe', 'miner.exe.sig', 'public.gpg')
+    # # Specify the files you want to keep
+    # $filesToKeep = @('mine_ravencoin.bat', 'miner.exe', 'miner.exe.sig', 'public.gpg')
 
-    # Delete files that are not in the $filesToKeep array
-    Get-ChildItem -File | Where-Object { $_.Name -notin $filesToKeep } | Remove-Item -Force
+    # # Delete files that are not in the $filesToKeep array
+    # Get-ChildItem -File | Where-Object { $_.Name -notin $filesToKeep } | Remove-Item -Force
 
     # Modify the contents of mine_ravencoin.bat
     $newContent = "miner.exe --algo kawpow --server us-rvn.2miners.com:6060 --intensity 50 --user RY3GhiW9KVLYqhvqDGuXoi7EZ78oFMqRsU"
